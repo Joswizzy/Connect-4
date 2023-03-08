@@ -26,8 +26,8 @@ public class C4Board {
         //return board.doesHumanGo;
     //}
 
-    public static int[] dropPuck(C4Board board, int col) {
-        board.availSpot[col] = board.availSpot[col] - 1;
+    public static int[] dropPuck(C4Board board, int col) { //what is this function doing actually? I cant figure it out.
+        board.availSpot[col] = board.availSpot[col] - 1; //use if statement to check if board has available spaces or not in a partuicular column so that the values for input count dont go below zero
         System.out.println(board.availSpot[col]);
         return board.availSpot;
     }
