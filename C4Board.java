@@ -16,7 +16,7 @@ public class C4Board {
     public int gameMode() {
         System.out.println("Which game mode would you like to play?");
         System.out.println("(1) human vs. human (challenging mode), " +
-                           "or (2) human vs. computer (easy mode)");
+                           "or (2) human vs. computer (extremely easy mode)");
         
         Scanner input = new Scanner(System.in);
         int gamemode = input.nextInt();
@@ -61,7 +61,7 @@ public class C4Board {
                 }
                 else {
                 //break; stops the loop
-                break;
+                 endGame();
                 }
             }
             if (board[0][col] == 1 || board[0][col] == 2) {
@@ -73,10 +73,6 @@ public class C4Board {
         }
 
     }
-
-    // public int playerTurn() {
-
-    // }
 
     public int chooseCol() {
         Scanner input = new Scanner(System.in);
@@ -175,36 +171,29 @@ public class C4Board {
                         //index + 1 to display true row and column
                         System.out.println("Player " + board[i][j] + " wins!"
                                             + " At row " + (i + 1) + ", column " + (j + 1));
-                        endGame();
-                        return board[i][j];
-                }
-                else {
-                    //draw check
-                    boolean draw = true;
-                    for (int e = 0; e < board[0].length; e++) {
-                        if (board[0][e] == 0) {
-                           //will NOT be a draw if board is not full and no one has one yet
-                            draw = false;
-                            System.out.println("Next players turn.");
-                            return -2;
-                       }
+                    return board[i][j];
                     }
-                   if (draw) {
-                   System.out.println("There has been a draw. The board is full but no one won.");
-                   return 0;
-                   }
-
-                }
             }
-        }      
-        System.out.println("Looks like no one won :(");
-        return 0;
+        }
+        int checkDraw = checkDraw();
+        return checkDraw;
     }
 
     public int checkDraw() {
-         
-         
-        return 0;
+        boolean draw = true;
+        for (int e = 0; e < board[0].length; e++) {
+            if (board[0][e] == 0) {
+               //will NOT be a draw if board is not full and no one has one yet
+                draw = false;
+                System.out.println("Next players turn.");
+                return -2;
+           }
+        }
+       if (draw) {
+       System.out.println("There has been a draw. The board is full but no one won.");
+       return 0;
+       }
+       return 0;
     }
 
     public void endGame() {
@@ -219,7 +208,7 @@ public class C4Board {
         }
         if (endOption.equals("n")) {
             System.out.println("Thank you for playing!");
-            //how do you close/stop the program?
+            System.exit(0);
         }
         else {
             System.out.println("Invalid output, try again.");
